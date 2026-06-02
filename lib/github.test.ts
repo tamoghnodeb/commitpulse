@@ -27,6 +27,7 @@ import type { ContributionCalendar } from '../types';
 vi.mock('server-only', () => ({}));
 
 const mockCalendar: ContributionCalendar = {
+  totalContributions: 8,
   repoContributions: 42,
   weeks: [
     {
@@ -303,6 +304,7 @@ describe('fetchGitHubContributions', () => {
 
   it('works correctly for a brand-new user who has zero contribution weeks', async () => {
     const emptyCalendar: ContributionCalendar = {
+      totalContributions: 0,
       repoContributions: 0,
       weeks: [],
     };
@@ -434,6 +436,7 @@ describe('fetchGitHubContributions', () => {
   });
   it('handles calendar with all days having zero contributions', async () => {
     const sparseCalendar: ContributionCalendar = {
+      totalContributions: 0,
       repoContributions: 0,
       weeks: [
         {
@@ -462,6 +465,7 @@ describe('fetchGitHubContributions', () => {
 
   it('is deterministic: two calls with empty-year response return identical data', async () => {
     const emptyCalendar: ContributionCalendar = {
+      totalContributions: 0,
       repoContributions: 0,
       weeks: [],
     };
@@ -1180,6 +1184,7 @@ describe('getFullDashboardData', () => {
 
   it('maps contribution counts to correct intensity levels', async () => {
     const intensityCalendar: ContributionCalendar = {
+      totalContributions: 30,
       repoContributions: 30,
       weeks: [
         {
